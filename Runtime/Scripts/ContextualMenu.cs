@@ -1,48 +1,49 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public abstract class ContextualMenu : MonoBehaviour
+namespace ContextualMenu.Runtime
 {
-    // TODO : Use ObjectPool<> to optimize
-    // The key can be changed to an int and the int could be added to the Option class
-    // TODO : Display dictionary in editor ?
-    [SerializeField, EditInPlayModeOnly]
-    protected Dictionary<Sprite, List<Option>> buttonEvents = new Dictionary<Sprite, List<Option>>();
-
-    private void AddOptionInternal(Option newOption)
+    public abstract class ContextualMenu : MonoBehaviour
     {
-        if (!buttonEvents.ContainsKey(newOption.sprite))
+        // TODO : Use ObjectPool<> to optimize
+        // The key can be changed to an int and the int could be added to the Option class
+        // TODO : Display dictionary in editor ?
+        [SerializeField, EditInPlayModeOnly]
+        protected Dictionary<Sprite, List<Option>> buttonEvents = new Dictionary<Sprite, List<Option>>();
+
+        private void AddOptionInternal(Option newOption)
         {
-            buttonEvents.Add(newOption.sprite, new List<Option>());
+            if (!buttonEvents.ContainsKey(newOption.sprite))
+            {
+                buttonEvents.Add(newOption.sprite, new List<Option>());
+            }
+
+            buttonEvents[newOption.sprite].Add(newOption);
         }
 
-        buttonEvents[newOption.sprite].Add(newOption);
-    }
-
-    public void AddOption(Option newOption)
-    {
-        AddOptionInternal(newOption);
-        UpdateOptions();
-    }
-
-    public void AddOptions(List<Option> options)
-    {
-        foreach (Option newOption in options)
+        public void AddOption(Option newOption)
         {
             AddOptionInternal(newOption);
+            UpdateOptions();
         }
 
-        UpdateOptions();
-    }
+        public void AddOptions(List<Option> options)
+        {
+            foreach (Option newOption in options)
+            {
+                AddOptionInternal(newOption);
+            }
 
-    // Called when the list of options has been modified
-    protected abstract void UpdateOptions();
+            UpdateOptions();
+        }
 
-    // Called when the list of options is cleared
-    public virtual void Clear()
-    {
-        buttonEvents.Clear();
+        // Called when the list of options has been modified
+        protected abstract void UpdateOptions();
+
+        // Called when the list of options is cleared
+        public virtual void Clear()
+        {
+            buttonEvents.Clear();
+        }
     }
 }

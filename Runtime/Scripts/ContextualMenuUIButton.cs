@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContextualMenuUIButton : MonoBehaviour
+namespace ContextualMenu.Runtime
 {
-    [EditInPlayModeOnly]
-    public List<Option> optionsList;
-
+    public class ContextualMenuUIButton : MonoBehaviour
+    {
+        [EditInPlayModeOnly] public List<Option> optionsList;
+    }
 }

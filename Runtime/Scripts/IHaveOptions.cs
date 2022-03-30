@@ -1,8 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public interface IHaveOptions 
+namespace ContextualMenu.Runtime
 {
-    List<Option> GetOptions();
+    public interface IHaveOptions
+    {
+        List<Option> GetOptions();
+    }
 }
