@@ -1,0 +1,12 @@
+{
+  "name": "open-source-unity-package.contextual-menu.Editor.Tests",
+  "references": [
+    "open-source-unity-package.contextual-menu.Editor",
+    "open-source-unity-package.contextual-menu.Runtime"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": []
+}

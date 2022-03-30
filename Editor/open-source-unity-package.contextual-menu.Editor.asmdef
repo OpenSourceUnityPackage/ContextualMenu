@@ -1,0 +1,10 @@
+{
+	"name": "open-source-unity-package.contextual-menu.Editor",
+	"references": [
+		"open-source-unity-package.contextual-menu.Runtime"
+	],
+	"includePlatforms": [
+		"Editor"
+	],
+	"excludePlatforms": []
+}

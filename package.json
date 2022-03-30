@@ -1,17 +1,17 @@
 {
-  "name": "[YourCompany].[YourPackageName]",
-  "displayName": "[YourPackageDisplayName]",
+  "name": "open-source-unity-package.contextual-menu",
+  "displayName": "ContextualMenu",
   "description": "",
   "version": "0.0.0",
   "unity": "2020.3",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+[YourHTTPSGit]"
+    "url": "git+https://github.com/OpenSourceUnityPackage/ContextualMenu.git"
   },
   "author": {
-    "name": "[YourAuthorName]",
-    "url": ""
+    "name": "OpenSourceUnityPackage",
+    "url": "https://github.com/OpenSourceUnityPackage"
   },
   "dependencies": {},
   "keywords": [

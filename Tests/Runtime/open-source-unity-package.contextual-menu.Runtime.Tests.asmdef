@@ -1,7 +1,7 @@
 {
-  "name": "[YourCompany].[YourPackageName].Tests",
+  "name": "open-source-unity-package.contextual-menu.Tests",
   "references": [
-    "[YourCompany].[YourPackageName].Runtime"
+    "open-source-unity-package.contextual-menu.Runtime"
   ],
   "optionalUnityReferences": [
     "TestAssemblies"
