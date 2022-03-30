@@ -1,3 +1,10 @@
+# 1.0.0 (2022-03-30)
+
+
+### Features
+
+* add meta, namespace and tools ([aea8fa0](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/aea8fa062e19b875c10100133108322ac42880c5))
+
 # Changelog
 All notable changes to this project will be documented in this file.
 
