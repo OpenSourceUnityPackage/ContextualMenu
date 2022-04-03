@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/OpenSourceUnityPackage/ContextualMenu/compare/1.0.0...1.1.0) (2022-04-03)
+
+
+### Features
+
+* new version with less coupling and exemple in sample ([690c9ac](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/690c9acac968b8b794eedabf62cb24e0d067cfc3))
+
 # 1.0.0 (2022-03-30)
 
 
