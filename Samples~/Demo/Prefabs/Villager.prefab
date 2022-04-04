@@ -113,4 +113,5 @@ MonoBehaviour:
   actions:
   - Move
   - Stop
-  - Build
+  speed: 5
+  distanceToReach: 0.1

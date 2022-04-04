@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8591110283459183536}
   - component: {fileID: 1591215267957486921}
   m_Layer: 10
-  m_Name: Fighter
+  m_Name: DrunkVillager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,5 +112,5 @@ MonoBehaviour:
   team: 0
   actions:
   - Move
-  - Stop
-  - Fight
+  speed: 2
+  distanceToReach: 0.1
