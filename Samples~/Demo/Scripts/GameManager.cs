@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnitSelectionPackage;
+using ContextualMenuPackage;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,7 +20,7 @@ public class GameManager : MonoBehaviour
     private ContextualMenu<Unit> m_contextualMenu = new ContextualMenu<Unit>();
     private List<Unit>[] m_teamsUnits = new List<Unit>[(int) ETeam.TeamCount];
     private bool m_isSelecting;
-    protected EventSystem m_eventSystem;
+    private EventSystem m_eventSystem;
 
     [System.Serializable]
     public struct TaskUIElement
@@ -29,8 +31,9 @@ public class GameManager : MonoBehaviour
 
     public Toggle btnMove;
     public Button btnStop;
-    public Toggle btnBuild;
-    public Toggle btnFight;
+
+    public Action<Vector3> RequestPosition { get; set; }
+    public int m_layerGround;
 
     #region Singleton
 
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        m_layerGround = 1 << LayerMask.NameToLayer("Floor");
+        
         for (var index = 0; index < m_teamsUnits.Length; index++)
         {
             m_teamsUnits[index] = new List<Unit>();
@@ -68,8 +73,7 @@ public class GameManager : MonoBehaviour
         m_eventSystem = EventSystem.current;
         
         m_contextualMenu.AddTask("Move", new MoveContext());
-        m_contextualMenu.AddTask("Construct", new MoveContext());
-        m_contextualMenu.AddTask("Fight", new MoveContext());
+        m_contextualMenu.AddTask("Stop", new Stop());
 
         btnMove.onValueChanged.AddListener(delegate
         {
@@ -80,16 +84,6 @@ public class GameManager : MonoBehaviour
         {
             m_contextualMenu.InvokeTask("Stop");
         });
-        
-        btnFight.onValueChanged.AddListener(delegate
-        {
-            m_contextualMenu.InvokeTask("Fight");
-        });
-        
-        btnBuild.onValueChanged.AddListener(delegate
-        {
-            m_contextualMenu.InvokeTask("Build");
-        });
     }
 
     private void OnEnable()
@@ -97,13 +91,13 @@ public class GameManager : MonoBehaviour
         m_unitSelection.SetObserver(m_teamsUnits[(int) ETeam.Team1]);
         m_unitSelection.OnSelection += selected =>
         {
-            m_contextualMenu.SetObserver(selected);
+            m_contextualMenu.SetContextualizable(selected);
 
             btnMove.gameObject.SetActive(false);
+            btnMove.isOn = false;
+
             btnStop.gameObject.SetActive(false);
-            btnFight.gameObject.SetActive(false);
-            btnBuild.gameObject.SetActive(false);
-            
+
             foreach (string task in m_contextualMenu.GetTasks())
             {
                 switch (task)
@@ -114,12 +108,6 @@ public class GameManager : MonoBehaviour
                     case "Stop":
                         btnStop.gameObject.SetActive(true);
                         break;
-                    case "Fight":
-                        btnFight.gameObject.SetActive(true);
-                        break;
-                    case "Build":
-                        btnBuild.gameObject.SetActive(true);
-                        break;
                 }
             }
         };
@@ -127,7 +115,23 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !m_eventSystem.IsPointerOverGameObject())
+        // On click on world
+        bool isPointerOverGameObject = m_eventSystem.IsPointerOverGameObject();
+
+        if (Input.GetMouseButtonDown(1) && !isPointerOverGameObject)
+        {
+            if (RequestPosition != null)
+            {
+                RaycastHit hit;
+                // Does the ray intersect any objects excluding the player layer
+                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, m_layerGround))
+                {
+                    RequestPosition.Invoke(hit.point);
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0) && !isPointerOverGameObject)
         {
             if (!m_isSelecting)
             {
@@ -141,8 +145,9 @@ public class GameManager : MonoBehaviour
             m_unitSelection.OnSelectionProcess(mainCamera, Input.mousePosition);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !isPointerOverGameObject)
         {
+            RequestPosition = null;
             m_unitSelection.OnSelectionEnd();
             m_isSelecting = false;
         }
