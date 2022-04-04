@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/OpenSourceUnityPackage/ContextualMenu/compare/1.1.0...1.2.0) (2022-04-04)
+
+
+### Features
+
+* add demo with integration of context menu ([f3f9d14](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/f3f9d14ecc9a168e185d7c1842c8459a1f40ceba))
+* clean project, add commentary and change name of functions ([806d31d](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/806d31dddbb537dd2400285b9b89c55eb31526f4))
+
 # [1.1.0](https://github.com/OpenSourceUnityPackage/ContextualMenu/compare/1.0.0...1.1.0) (2022-04-03)
 
 
