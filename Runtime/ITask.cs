@@ -1,10 +1,17 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-namespace UnitSelectionPackage
+namespace ContextualMenuPackage
 {
-    public interface ITask<T> where T : MonoBehaviour, IContextualizable
+    /// <summary>
+    /// Inherit from ITask to define task that contextualizable can handle
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface ITask<T> where T : IContextualizable
     {
-        public void OnSelect(List<T> targets);
+        /// <summary>
+        /// Invoke task with list of contextualizable that own it
+        /// </summary>
+        /// <param name="contextualizables"></param>
+        public void OnInvoked(List<T> contextualizables);
     }
 }
