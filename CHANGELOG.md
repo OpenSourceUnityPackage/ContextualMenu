@@ -1,3 +1,11 @@
+# [1.3.0](https://github.com/OpenSourceUnityPackage/ContextualMenu/compare/1.2.0...1.3.0) (2022-04-05)
+
+
+### Features
+
+* integrate example with new features ([3a64b94](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/3a64b94683ac9edd887de98707861d32e1a206ff))
+* splite contextualMenu to create shared and global contextual menu. ([a787b6b](https://github.com/OpenSourceUnityPackage/ContextualMenu/commit/a787b6ba32266a3e74ad6b248390def4d2bd97b8))
+
 # [1.2.0](https://github.com/OpenSourceUnityPackage/ContextualMenu/compare/1.1.0...1.2.0) (2022-04-04)
 
 
