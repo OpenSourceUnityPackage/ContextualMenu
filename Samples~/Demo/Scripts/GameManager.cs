@@ -15,25 +15,22 @@ public enum ETeam : int
 
 public class GameManager : MonoBehaviour
 {
+    private SharedContextualMenu<Unit> m_contextualMenu = new SharedContextualMenu<Unit>();
+    
+    // Uncomment to test GlobalContextMenu
+    //private GlobalContextualMenu<Unit> m_contextualMenu = new GlobalContextualMenu<Unit>();
+    private List<Unit>[] m_teamsUnits = new List<Unit>[(int) ETeam.TeamCount];
+    
     public Camera mainCamera;
     private UnitSelection<Unit> m_unitSelection = new UnitSelection<Unit>();
-    private ContextualMenu<Unit> m_contextualMenu = new ContextualMenu<Unit>();
-    private List<Unit>[] m_teamsUnits = new List<Unit>[(int) ETeam.TeamCount];
     private bool m_isSelecting;
     private EventSystem m_eventSystem;
-
-    [System.Serializable]
-    public struct TaskUIElement
-    {
-        public string task;
-        public Button button;
-    }
-
+    private int m_layerGround;
+    
     public Toggle btnMove;
     public Button btnStop;
 
     public Action<Vector3> RequestPosition { get; set; }
-    public int m_layerGround;
 
     #region Singleton
 
