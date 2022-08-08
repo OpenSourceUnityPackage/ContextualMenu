@@ -26,6 +26,15 @@ namespace ContextualMenuPackage
         {
             m_tasks.Add(id, task);
         }
+        
+        public ITask<T> GetTask(string taskId)
+        {
+            if (m_tasks.ContainsKey(taskId))
+            {
+                return m_tasks[taskId];
+            }
+            return null;
+        }
 
         /// <summary>
         /// Allow to invoke task thanks to it's ID.
