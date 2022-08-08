@@ -27,6 +27,11 @@ namespace ContextualMenuPackage
             m_tasks.Add(id, task);
         }
         
+		/// <summary>
+        /// Use this function to get the task associated to the taskID.
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
         public ITask<T> GetTask(string taskId)
         {
             if (m_tasks.ContainsKey(taskId))
